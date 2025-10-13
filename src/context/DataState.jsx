@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useState, useSyncExternalStore } from 'react'
 import DataContext from './DataContext'
+import { items } from './Data'
 
 const DataState = (props) => {
+  const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState([]);
   return (
-    <DataContext.Provider value={{}}>{props.children}</DataContext.Provider>
+    <DataContext.Provider value={{products, setProducts, cart, setCart}}>{props.children}</DataContext.Provider>
   )
 }
 
