@@ -66,3 +66,14 @@ body::-webkit-scrollbar{
 .py-2{
   padding-top: 0.9rem !important;
 }
+
+/* video player  */
+.video-container{
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  height: 95vh;
+  margin: auto;
+  border-radius: 5px;
+  overflow: hidden;
+}
