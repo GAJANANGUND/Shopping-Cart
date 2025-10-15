@@ -77,3 +77,30 @@ body::-webkit-scrollbar{
   border-radius: 5px;
   overflow: hidden;
 }
+.video-player{
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--border-radius);
+}
+
+/* product styling  */
+.cart-card,
+.product-card,
+.product-detail-card{
+  background: var(--primary-bg);
+  backdrop-filter: var(--blur);
+  color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  border: var(--border);
+  transition: var(--transition);
+  padding: 20px;
+}
+.cart-card:hover,
+.product-card:hover,
+.product-detail-card:hover{
+  transform: translateY(-px);
+  box-shadow: var(--hover-box-shadow);
+
+}
