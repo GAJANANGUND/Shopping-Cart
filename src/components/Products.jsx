@@ -1,11 +1,14 @@
 import React from 'react'
-import { Link } from 'react-router';
+import { Link, useLocation } from 'react-router';
 import ShopByCategory from './ShopByCategory'
 
 const Products = ({ items }) => {
+  // console.log("use location hook = ",useLocation())
+  const {pathname} = useLocation()
   return (
     <>
-    <ShopByCategory />
+    {pathname == '/'&& <ShopByCategory />}
+    
       <div className="container my-5">
         <div className="row d-flex justify-content-center">
           {items.map((product) => <div key={product.id} className='col-lg-4 col-md-6 my-3 d-flex justify-content-center align-items-center'>
