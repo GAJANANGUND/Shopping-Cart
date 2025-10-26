@@ -1,8 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FaAmazon, FaShoppingCart, FaSearch } from "react-icons/fa";
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 
 const Navbar = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+    navigate(`/product/search/${searchTerm}`);
+  }
+
   return (
     <div>
       <div className="navbar navbar-expand-lg navbar-dark bg-dark px-4 py-2 sticky-top shadow">
@@ -13,8 +20,8 @@ const Navbar = () => {
             <span className='fs-4 fw-bold'>Amazon</span>
           </Link>
 
-          <form className='d-flex mx-auto search-container'>
-            <input type="search" className='form-control search-input' placeholder='Search Products...' />
+          <form className='d-flex mx-auto search-container' onSubmit={handleSubmit}>
+            <input type="search" className='form-control search-input' placeholder='Search Products...' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
             <button className='btn btn-warning search-button'><FaSearch /></button>
           </form>
 
@@ -29,7 +36,7 @@ const Navbar = () => {
 
           {/* cart button  */}
           <Link to={'/cart'} type="button" className="btn btn-warning position-relative cart-btn">
-            <FaShoppingCart className='fs-4'/>
+            <FaShoppingCart className='fs-4' />
             <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
               99+
               <span className="visually-hidden">unread messages</span>
