@@ -1,14 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link, useLocation } from 'react-router';
 import ShopByCategory from './ShopByCategory'
+import DataContext from '../context/DataContext';
+import { ToastContainer, toast, Bounce } from 'react-toastify';
 
 const Products = ({ items }) => {
+
+  const { addToCart } = useContext(DataContext)
   // console.log("use location hook = ",useLocation())
-  const {pathname} = useLocation()
+  const { pathname } = useLocation()
   return (
     <>
-    {pathname == '/'&& <ShopByCategory />}
-    
+      <ToastContainer />
+      {pathname == '/' && <ShopByCategory />}
+
       <div className="container my-5">
         <div className="row d-flex justify-content-center">
           {items.map((product) => <div key={product.id} className='col-lg-4 col-md-6 my-3 d-flex justify-content-center align-items-center'>
@@ -20,7 +25,7 @@ const Products = ({ items }) => {
                 <h5 className='card-title'>{product.title}</h5>
                 <p className='product-price'>{product.price} ₹</p>
                 <div className="button-container">
-                  <button className='btn add-to-cart'>
+                  <button className='btn add-to-cart' onClick={() => addToCart(product.id, product.title, product.price, product.imgSrc)}>
                     🛒 Add To Cart
                   </button>
                 </div>

@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { FaAmazon, FaShoppingCart, FaSearch } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router';
+import DataContext from '../context/DataContext';
 
 const Navbar = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const { cart } = useContext(DataContext)
   const navigate = useNavigate();
-  const handleSubmit = (e) =>{
+  const handleSubmit = (e) => {
     e.preventDefault();
     navigate(`/product/search/${searchTerm}`);
   }
@@ -37,10 +39,13 @@ const Navbar = () => {
           {/* cart button  */}
           <Link to={'/cart'} type="button" className="btn btn-warning position-relative cart-btn">
             <FaShoppingCart className='fs-4' />
-            <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-              99+
-              <span className="visually-hidden">unread messages</span>
-            </span>
+            {cart.length > 0 && (
+              <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                {cart.length}
+                <span className="visually-hidden">unread messages</span>
+              </span>
+            )}
+
           </Link>
 
         </div>
