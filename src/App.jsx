@@ -19,6 +19,7 @@ const App = () => {
         <Route path='/product/category/:cat' element={<ProductByCategory />} />
         <Route path='/product/search/:term' element={<Search_Product />} />
       </Routes>
+      <TrendingSlider />
     </Router>
   )
 }
